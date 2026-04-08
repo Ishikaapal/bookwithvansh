@@ -22,10 +22,9 @@ const About = () => {
   ];
 
   return (
-    <section 
+    <div 
       ref={containerRef}
-      id="about" 
-      className="relative min-h-[150vh] w-full bg-background overflow-hidden"
+      className="mainContainer"
     >
       {/* 1. THE FLOATING BOOK ELEMENTS */}
       <div className="sticky top-0 h-screen w-full overflow-hidden pointer-events-none">
@@ -60,7 +59,7 @@ const About = () => {
       </div>
 
       {/* 2. THE CONTENT (Center-Pinned) */}
-      <div className="relative z-10 w-full max-w-4xl mx-auto px-6 py-32 flex flex-col items-center">
+      <div className=" w-full insideContainer max-w-4xl  flex flex-col items-center">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -108,7 +107,7 @@ const About = () => {
 
       {/* 3. TRANSITION GRADIENT */}
       <div className="absolute inset-x-0 bottom-0 h-64 bg-gradient-to-t from-background to-transparent z-20" />
-    </section>
+    </div>
   );
 };
 

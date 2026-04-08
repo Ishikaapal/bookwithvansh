@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
+import {Mouse} from "lucide-react";
 
 // 1. IMPORT YOUR VIDEO (This is the "12+ years exp" way to handle assets in React)
 import heroBookVideo from '../../assets/media/heroBook.mp4'; 
@@ -12,7 +13,7 @@ const Hero = () => {
   const textY = useTransform(scrollY, [0, 500], [0, -40]);
 
   return (
-    <section className="relative min-h-screen w-full flex items-center justify-center overflow-hidden bg-background">
+    <div className="mainContainer rowFlex ">
       
       {/* --- VIDEO LAYER --- */}
       <motion.div 
@@ -40,7 +41,7 @@ const Hero = () => {
       {/* --- CONTENT LAYER --- */}
       <motion.div 
         style={{ y: textY }}
-        className="relative z-20 max-w-6xl px-6 text-center"
+        className="insideContainer text-center"
       >
         <motion.div
           initial={{ opacity: 0, scale: 0.98 }}
@@ -74,7 +75,7 @@ const Hero = () => {
               <div className="absolute inset-0 bg-primary-dark opacity-0 group-hover:opacity-100 transition-opacity" />
             </button>
             
-            <button className="text-text-primary font-bold group flex items-center gap-3 py-5 transition-all">
+            <button className="text-text-primary border-2 border-primary px-10 py-5 rounded-2xl font-bold group flex items-center gap-3 transition-all hover:shadow-2xl hover:bg-primary hover:-translate-y-1 active:scale-95">
               Explore Our Work
               <div className="relative w-10 h-[2px] bg-primary overflow-hidden">
                 <motion.div 
@@ -94,11 +95,11 @@ const Hero = () => {
         transition={{ duration: 2.5, repeat: Infinity }}
         className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-40"
       >
-        <span className="text-[10px] uppercase tracking-[0.3em] font-bold text-text-secondary">Scroll</span>
-        <div className="w-[1px] h-12 bg-gradient-to-b from-primary to-transparent" />
+        <span className="text-[10px] uppercase tracking-[0.3em] font-bold text-text-primary">Scroll</span>
+        <Mouse  className='w-8 h-8 text-text-primary'/>
       </motion.div>
 
-    </section>
+    </div>
   );
 };
 

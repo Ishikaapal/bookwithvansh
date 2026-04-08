@@ -44,8 +44,8 @@ const Services = () => {
   ];
 
   return (
-    <section id="services" className="relative py-24 bg-[#0A0A0B] overflow-hidden">
-      <div className="max-w-7xl mx-auto px-6">
+    <div className="mainContainer bg-[#0A0A0B]">
+      <div className="insideContainer">
         
         {/* Header Section */}
         <div className="mb-16 text-center md:text-left">
@@ -134,7 +134,7 @@ const Services = () => {
           ))}
         </div>
       </div>
-    </section>
+    </div>
   );
 };
 
