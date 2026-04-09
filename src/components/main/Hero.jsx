@@ -66,7 +66,7 @@ const Hero = () => {
           </h1>
 
           <p className="mt-8 text-lg md:text-2xl text-text-secondary max-w-3xl mx-auto font-light leading-relaxed">
-            At <span className="text-text-primary font-medium">Books With Vansh</span>, we help authors grow through strategic book marketing, creative visuals, and high-impact content.
+            At <span className="text-text-primary font-medium">Books With Vansh</span>, we help authors and digital creators grow their audience through strategic book marketing, creative visuals, and high-impact content that captures attention and builds lasting reader engagement.
           </p>
 
           <div className="mt-12 flex flex-col sm:flex-row items-center justify-center gap-8">
@@ -95,8 +95,8 @@ const Hero = () => {
         transition={{ duration: 2.5, repeat: Infinity }}
         className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-40"
       >
-        <span className="text-[10px] uppercase tracking-[0.3em] font-bold text-text-primary">Scroll</span>
-        <Mouse  className='w-8 h-8 text-text-primary'/>
+        <span className="text-[10px] uppercase tracking-[0.3em] font-bold text-primary-dark">Scroll</span>
+        <Mouse  className='w-8 h-8 text-primary-dark'/>
       </motion.div>
 
     </div>
