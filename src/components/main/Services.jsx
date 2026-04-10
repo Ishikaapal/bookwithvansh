@@ -44,7 +44,7 @@ const Services = () => {
   ];
 
   return (
-    <div className="mainContainer bg-[#0A0A0B]">
+    <div className="mainContainer">
       <div className="insideContainer">
         
         {/* Header Section */}
@@ -57,7 +57,7 @@ const Services = () => {
             <span className="text-primary font-bold tracking-[0.4em] uppercase text-xs">Expert Solutions</span>
             <div className="h-[1px] w-12 bg-primary/40" />
           </motion.div>
-          <h2 className="text-5xl md:text-7xl font-serif font-bold text-white">
+          <h2 className="text-5xl md:text-7xl font-serif font-bold text-text-primary">
             Our <span className="italic text-primary">Services</span>
           </h2>
         </div>
@@ -82,18 +82,18 @@ const Services = () => {
                   alt={service.title} 
                   className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 scale-110 group-hover:scale-100"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent opacity-80" />
+                <div className="absolute inset-0 bg-gradient-to-t from-text-primary/30 via-text-secondary/20 to-transparent opacity-80" />
               </div>
 
               {/* Content Container */}
               <div className="relative z-10 h-full p-8 flex flex-col justify-end">
                 
                 {/* Icon & Title (Visible when collapsed) */}
-                <div className="flex items-center gap-4 mb-2">
+                <div className="flex items-center justify-start gap-4 mb-2">
                   <span className="text-3xl filter drop-shadow-[0_0_10px_rgba(200,155,60,0.5)]">
                     {service.icon}
                   </span>
-                  <h3 className={`text-xl font-serif font-bold text-white transition-all duration-300 ${expandedIndex === index ? 'opacity-100' : 'md:rotate-90 md:origin-left md:absolute md:left-12 md:bottom-24 md:w-max'}`}>
+                  <h3 className={`text-xl font-serif font-bold text-primary transition-all duration-300 ${expandedIndex === index ? 'opacity-100' : 'md:rotate-90 md:origin-left md:absolute md:left-12 md:top-40 md:w-max'}`}>
                     {service.title}
                   </h3>
                 </div>
@@ -106,18 +106,12 @@ const Services = () => {
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0 }}
                       transition={{ duration: 0.4, delay: 0.2 }}
-                      className="mt-4"
+                      className="mt-4 "
                     >
-                      <p className="text-gray-300 text-sm md:text-base leading-relaxed max-w-md">
+                      <p className="text-background-soft text-sm md:text-base leading-relaxed max-w-xl">
                         {service.description}
                       </p>
-                      <motion.button 
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-                        className="mt-6 px-6 py-3 bg-primary text-black font-bold rounded-full text-xs uppercase tracking-widest flex items-center gap-2"
-                      >
-                        Learn More <span className="text-lg">→</span>
-                      </motion.button>
+                      
                     </motion.div>
                   )}
                 </AnimatePresence>
@@ -127,7 +121,7 @@ const Services = () => {
               {expandedIndex === index && (
                 <motion.div 
                   layoutId="glow"
-                  className="absolute inset-0 border-2 border-primary/50 rounded-[2rem] pointer-events-none"
+                  className="absolute inset-0 border-2 border-primary/50 rounded-4xl pointer-events-none"
                 />
               )}
             </motion.div>

@@ -138,7 +138,7 @@ const Testimonials = () => {
       </div>
 
       {/* Decorative Corner Numbers */}
-      <div className="absolute bottom-12 left-12 font-serif text-white/10 text-9xl pointer-events-none">
+      <div className="absolute bottom-12 right-12 md:left-12 font-serif text-white/10 text-9xl pointer-events-none">
         0{activeIndex + 1}
       </div>
 

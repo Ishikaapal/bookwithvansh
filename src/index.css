@@ -1,8 +1,6 @@
 @import "tailwindcss";
 
-
-@theme{
-
+@theme {
     /* Background */
     --color-background: var(--background);
     --color-background-soft: var(--background-soft);
@@ -21,54 +19,68 @@
 
     /* UI */
     --color-border: var(--border);
+
+   
 }
 
-@layer base{
-
+@layer base {
     :root {
+        /* Background Colors */
+        --background: #FAF9F6;
+        --background-soft: #F2EFEA;
 
-  /* Background Colors */
-  --background: #FAF9F6;
-  --background-soft: #F2EFEA;
+        /* Brand Colors */
+        --primary: #C89B3C;
+        --primary-dark: #A67C2A;
 
-  /* Brand Colors */
-  --primary: #C89B3C;
-  --primary-dark: #A67C2A;
+        /* Text Colors */
+        --text-primary: #1F2933;
+        --text-secondary: #4B5563;
 
-  /* Text Colors */
-  --text-primary: #1F2933;
-  --text-secondary: #4B5563;
+        /* Accent */
+        --accent: #C89B3C;
+        --accent-light: #E3C87A;
 
-  /* Accent */
-  --accent: #C89B3C;
-  --accent-light: #E3C87A;
+        /* Border / UI */
+        --border: #E5E7EB;
+    }
 
-  /* Border / UI */
-  --border: #E5E7EB;
+    html {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        scroll-behavior: smooth;
+        
+        scroll-snap-type: y proximity; 
+    }
 
+    body {
+        @apply bg-background text-text-primary antialiased;
+    }
+
+    
 }
 
-html{
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  scroll-behavior: smooth;
-  scroll-snap-type: y;
-  scroll-snap-align: center;
+/* --- CUSTOM UTILITIES --- */
+
+/* This replaces the module.exports config you were looking for */
+@utility backface-hidden {
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
 }
 
-
-
+@utility preserve-3d {
+    transform-style: preserve-3d;
 }
 
-@utility mainContainer{
-  @apply relative min-h-screen overflow-hidden py-8 sm:py-12 md:py-16 lg:py-24; 
+@utility mainContainer {
+    @apply relative min-h-screen overflow-hidden py-8 sm:py-12 md:py-16 lg:py-24; 
 }
 
 @utility insideContainer {
-  @apply max-w-7xl mx-auto relative z-20 px-4;
+    @apply max-w-7xl mx-auto relative z-20 px-4;
 }
 
-@utility rowFlex{
-  @apply flex items-center justify-center;
+@utility rowFlex {
+    @apply flex items-center justify-center;
 }

@@ -83,13 +83,11 @@ const Footer = () => {
             <FiArrowUp className="group-hover:text-black transition-colors" />
           </motion.button>
 
-          <div className="flex gap-8 text-[10px] uppercase tracking-widest font-bold text-gray-500">
-            <a href="#" className="hover:text-primary transition-colors">Privacy Policy</a>
-            <a href="#" className="hover:text-primary transition-colors">Terms of Service</a>
-          </div>
+          
 
           <p className="text-[10px] uppercase tracking-[0.3em] font-bold text-gray-600">
-            © {currentYear} BOOKS WITH VANSH — ALL RIGHTS RESERVED
+            © {currentYear} BOOKS WITH VANSH — ALL RIGHTS RESERVED. 
+            Crafted By <a target='__blank' href='https://ipvertex.netlify.app/' className='text-background animate-pulse'>IP VERTEX</a>
           </p>
         </div>
 
