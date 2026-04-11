@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import logo from "../../assets/favicon.ico";   //LOGO IMAGE PATH
+import logo from "../../assets/media/logo.png";   //LOGO IMAGE PATH
 
 const NavBar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -40,7 +40,7 @@ const NavBar = () => {
           
           {/* Logo Section */}
           <a href="#" className="flex items-center gap-2 group cursor-pointer">
-            <img src={logo} alt='logo' className="contain w-10 h-10" />
+            <img src={logo} alt='logo' className="contain w-18 h-18" />
             <span className="text-text-primary font-serif font-bold text-xl tracking-tight">
               BooksWith<span className="text-primary">Vansh</span>
             </span>

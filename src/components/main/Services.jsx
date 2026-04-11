@@ -48,19 +48,22 @@ const Services = () => {
       <div className="insideContainer">
         
         {/* Header Section */}
-        <div className="mb-16 text-center md:text-left">
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            className="flex items-center gap-4 mb-4 justify-center md:justify-start"
-          >
-            <span className="text-primary font-bold tracking-[0.4em] uppercase text-xs">Expert Solutions</span>
-            <div className="h-[1px] w-12 bg-primary/40" />
-          </motion.div>
-          <h2 className="text-5xl md:text-7xl font-serif font-bold text-text-primary">
-            Our <span className="italic text-primary">Services</span>
-          </h2>
-        </div>
+         {/* --- SECTION HEADER --- */}
+                <div className="text-center max-w-3xl mx-auto mb-20">
+                  
+                  <span className="inline-block py-1.5 px-5 rounded-full border border-primary/20 bg-background-soft/80 text-primary-dark text-xs font-bold tracking-[0.25em] uppercase mb-8 backdrop-blur-md shadow-sm">
+                    Our Experties
+                  </span>
+                  <motion.h2 
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.2 }}
+                    className="text-5xl md:text-7xl font-serif font-bold text-text-primary leading-tight"
+                  >
+                    Our Services <br />
+                  </motion.h2 >
+                </div>
 
         {/* The Expansion Grid */}
         <div className="flex flex-col md:flex-row gap-4 h-[600px] md:h-[500px]">

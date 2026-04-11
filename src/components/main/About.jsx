@@ -11,6 +11,9 @@ const About = () => {
           transition={{ duration: 1, delay: 0.2 }}
           className="bg-background/60 backdrop-blur-md p-8 md:p-16 border border-primary/10 rounded-[4rem] text-center"
         >
+          <span className="inline-block py-1.5 px-5 rounded-full border border-primary/20 bg-background-soft/80 text-primary-dark text-xs font-bold tracking-[0.25em] uppercase mb-8 backdrop-blur-md shadow-sm">
+            Know Books with Vansh
+          </span>
           <h2 className="text-4xl md:text-7xl font-serif font-bold text-text-primary mb-8">
             About{" "}
             <span className="text-primary italic text-3xl md:text-6xl block mt-2">

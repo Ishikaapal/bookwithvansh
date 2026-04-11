@@ -1,121 +1,137 @@
 import React, { useRef } from 'react';
 import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
-import { FiArrowRight, FiMail, FiInstagram, FiTwitter } from 'react-icons/fi';
+import { FiArrowRight, FiInstagram, FiLinkedin, FiMail } from 'react-icons/fi';
+
+// 1. IMPORT YOUR IMAGE
+import contactBg from '../../assets/media/Contact.png';
 
 const Contact = () => {
   const containerRef = useRef(null);
 
-  // 3D Tilt Logic for the Book
+  // 3D Tilt Logic
   const x = useMotionValue(0);
   const y = useMotionValue(0);
   const mouseXSpring = useSpring(x);
   const mouseYSpring = useSpring(y);
 
-  const rotateX = useTransform(mouseYSpring, [-0.5, 0.5], ["10deg", "-10deg"]);
-  const rotateY = useTransform(mouseXSpring, [-0.5, 0.5], ["-10deg", "10deg"]);
+  const rotateX = useTransform(mouseYSpring, [-0.5, 0.5], ["12deg", "-12deg"]);
+  const rotateY = useTransform(mouseXSpring, [-0.5, 0.5], ["-12deg", "12deg"]);
 
   const handleMouseMove = (e) => {
+    if (!containerRef.current) return;
     const rect = containerRef.current.getBoundingClientRect();
-    const width = rect.width;
-    const height = rect.height;
-    const mouseX = e.clientX - rect.left;
-    const mouseY = e.clientY - rect.top;
-    x.set(mouseX / width - 0.5);
-    y.set(mouseY / height - 0.5);
+    x.set((e.clientX - rect.left) / rect.width - 0.5);
+    y.set((e.clientY - rect.top) / rect.height - 0.5);
   };
 
   return (
     <section 
       ref={containerRef}
       onMouseMove={handleMouseMove}
-      className="min-h-screen bg-[#FAF9F6] flex items-center justify-center py-20 px-6 overflow-hidden"
+      className="relative min-h-screen flex items-center justify-center py-24 px-6 overflow-hidden bg-white"
     >
-      <div className="max-w-7xl w-full grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24 items-center">
+      {/* --- BACKGROUND IMAGE LAYER --- */}
+      <div className="absolute inset-0 z-0">
+        <img 
+          src={contactBg} 
+          alt="Contact Background" 
+          className="w-full h-full object-cover opacity-30" // Lower opacity to keep the light theme feel
+        />
+        {/* Cinematic Overlays: Keeps text readable and merges image with the theme */}
+        <div className="absolute inset-0 bg-gradient-to-b from-[#FAF9F6] via-transparent to-[#FAF9F6] z-6" />
+        <div className="absolute inset-0 bg-[#FAF9F6]/40 backdrop-blur-[2px] z-10" />
+      </div>
+      
+      <div className="max-w-7xl w-full grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-8 items-center relative z-20">
         
-        {/* LEFT SIDE: THE ARTISTIC BOOK VISUAL (5 Cols) */}
-        <div className="lg:col-span-5 relative flex justify-center items-center">
-          {/* Subtle Background glow for depth */}
-          <div className="absolute w-[400px] h-[400px] bg-stone-200/50 blur-[100px] rounded-full -z-10" />
+        {/* LEFT SIDE: THE PREMIUM BOOK SCULPTURE */}
+        <div className="lg:col-span-5 relative flex justify-center items-center perspective-[1500px]">
+          <div className="absolute w-[300px] h-[300px] bg-[#c89b3c]/10 blur-[100px] rounded-full" />
           
           <motion.div 
             style={{ rotateX, rotateY, transformStyle: "preserve-3d" }}
-            className="relative w-[300px] h-[450px] md:w-[380px] md:h-[540px] shadow-[30px_35px_80px_rgba(0,0,0,0.1)] group"
+            className="relative w-[280px] h-[420px] md:w-[340px] md:h-[500px] shadow-[40px_40px_90px_rgba(0,0,0,0.1)]"
           >
-            {/* The Spine */}
-            <div className="absolute left-0 top-0 w-[40px] h-full bg-[#2C2C2C] z-20 rounded-l-sm shadow-inner overflow-hidden">
-               <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rotate-90 whitespace-nowrap text-[10px] tracking-[0.3em] text-stone-400 font-bold uppercase">
-                  Volume — 2026
+            <div className="absolute left-0 top-0 w-[45px] h-full bg-[#1A1A1B] z-20 rounded-l-sm flex items-center justify-center">
+               <div className="rotate-90 whitespace-nowrap text-[9px] tracking-[0.5em] text-[#c89b3c] font-bold uppercase">
+                  Books With Vansh — MMXXVI
                </div>
             </div>
 
-            {/* The Front Cover */}
-            <div className="absolute inset-0 ml-[38px] bg-[#F4F1EA] rounded-r-md border-y border-r border-stone-200 p-12 flex flex-col justify-between overflow-hidden">
-              {/* Paper Texture Overlay */}
-              <div className="absolute inset-0 opacity-20 pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/cream-paper.png')]" />
+            <div className="absolute inset-0 ml-[43px] bg-white rounded-r-md border-y border-r border-stone-100 p-10 flex flex-col justify-between overflow-hidden">
+              <div className="absolute inset-0 opacity-40 pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/natural-paper.png')]" />
               
               <div className="relative z-10">
-                <div className="w-12 h-[2px] bg-stone-800 mb-8" />
-                <h3 className="text-4xl font-serif text-stone-900 leading-[1.1] mb-4">
-                  The Path of <br /> <span className="italic">Excellence</span>
+                <div className="w-10 h-[3px] bg-[#c89b3c] mb-8" />
+                <h3 className="text-4xl md:text-5xl font-serif text-[#1A1A1B] leading-[1.1] mb-2">
+                  The <br /> <span className="italic text-[#c89b3c]">Masterpiece</span> <br /> Blueprint
                 </h3>
-                <p className="text-stone-500 text-sm tracking-widest uppercase">A New Chapter in Design</p>
+                <p className="text-stone-400 text-[10px] tracking-[0.2em] uppercase font-bold mt-4">Elevating Author Brands</p>
               </div>
 
-              <div className="relative z-10 flex flex-col gap-2">
-                <span className="text-[10px] font-bold text-stone-400 uppercase tracking-tighter">Authorized Edition</span>
-                <div className="h-[1px] w-full bg-stone-200" />
+              <div className="relative z-10">
+                <div className="flex items-center gap-3">
+                    <div className="w-8 h-8 rounded-full border border-[#c89b3c]/30 flex items-center justify-center text-[#c89b3c] text-xs font-serif">V</div>
+                    <span className="text-[10px] font-bold text-stone-400 uppercase tracking-widest">Premium Strategy</span>
+                </div>
               </div>
 
-              {/* Decorative Gold Leaf Detail */}
-              <div className="absolute top-[-20px] right-[-20px] w-40 h-40 bg-stone-100 rounded-full blur-3xl opacity-50" />
+              <div className="absolute -bottom-4 -right-4 w-24 h-24 bg-[#FAF9F6] border border-stone-100 rounded-full flex items-center justify-center -rotate-12 shadow-sm">
+                <span className="text-[8px] font-black text-[#c89b3c] text-center leading-tight uppercase tracking-tighter">
+                    Crafted <br/> with <br/> Passion
+                </span>
+              </div>
             </div>
 
-            {/* Animated "Pages" behind the cover */}
-            <div className="absolute top-[2%] right-[-8px] w-full h-[96%] bg-stone-100 border border-stone-200 rounded-r-md -z-10 transition-transform group-hover:translate-x-2" />
-            <div className="absolute top-[4%] right-[-16px] w-full h-[92%] bg-stone-200 border border-stone-300 rounded-r-md -z-20 transition-transform group-hover:translate-x-4" />
+            <div className="absolute top-[1.5%] right-[-10px] w-full h-[97%] bg-stone-50 border border-stone-200 rounded-r-md -z-10" />
+            <div className="absolute top-[3%] right-[-20px] w-full h-[94%] bg-stone-100 border border-stone-200 rounded-r-md -z-20" />
           </motion.div>
         </div>
 
-        {/* RIGHT SIDE: PROFESSIONAL CONTACT FORM (7 Cols) */}
-        <div className="lg:col-span-7">
+        {/* RIGHT SIDE: CONTACT FORM */}
+        <div className="lg:col-span-7 lg:pl-12">
           <div className="max-w-xl">
-            <header className="mb-12">
-              <span className="text-stone-400 text-sm font-bold tracking-[0.4em] uppercase block mb-4">Contact the Author</span>
-              <h2 className="text-5xl md:text-7xl font-serif text-stone-900 leading-tight">
-                Let’s begin a <br /> <span className="italic text-stone-500">conversation.</span>
+            <header className="mb-14">
+              <div className="flex items-center gap-4 mb-4">
+                <div className="h-px w-8 bg-[#c89b3c]" />
+                <span className="text-[#c89b3c] text-xs font-bold tracking-[0.4em] uppercase">Connect</span>
+              </div>
+              <h2 className="text-5xl md:text-7xl font-serif text-[#1A1A1B] leading-[1.05]">
+                Write your <br /> <span className="italic text-stone-400 underline decoration-[#c89b3c]/20 underline-offset-8">next chapter.</span>
               </h2>
             </header>
 
-            <form className="space-y-10" onSubmit={(e) => e.preventDefault()}>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-                <div className="relative">
-                  <input type="text" required className="peer w-full bg-transparent border-b border-stone-200 py-3 focus:outline-none focus:border-stone-800 transition-colors text-stone-800 placeholder-transparent" id="name" placeholder="Name" />
-                  <label htmlFor="name" className="absolute left-0 -top-3.5 text-stone-400 text-xs uppercase tracking-widest transition-all peer-placeholder-shown:text-base peer-placeholder-shown:top-3 peer-placeholder-shown:tracking-normal peer-focus:-top-3.5 peer-focus:text-xs peer-focus:tracking-widest peer-focus:text-stone-800">Full Name</label>
+            <form className="space-y-12" onSubmit={(e) => e.preventDefault()}>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <div className="relative group">
+                  <input type="text" required className="peer w-full bg-transparent border-b border-stone-300 py-3 focus:outline-none focus:border-[#c89b3c] transition-colors text-[#1A1A1B] placeholder-transparent" id="name" placeholder="Name" />
+                  <label htmlFor="name" className="absolute left-0 -top-4 text-stone-500 text-[10px] uppercase tracking-[0.2em] font-bold transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:top-3 peer-placeholder-shown:tracking-normal peer-focus:-top-4 peer-focus:text-[10px] peer-focus:text-[#c89b3c]">Full Name</label>
                 </div>
 
-                <div className="relative">
-                  <input type="email" required className="peer w-full bg-transparent border-b border-stone-200 py-3 focus:outline-none focus:border-stone-800 transition-colors text-stone-800 placeholder-transparent" id="email" placeholder="Email" />
-                  <label htmlFor="email" className="absolute left-0 -top-3.5 text-stone-400 text-xs uppercase tracking-widest transition-all peer-placeholder-shown:text-base peer-placeholder-shown:top-3 peer-placeholder-shown:tracking-normal peer-focus:-top-3.5 peer-focus:text-xs peer-focus:tracking-widest peer-focus:text-stone-800">Email Address</label>
+                <div className="relative group">
+                  <input type="email" required className="peer w-full bg-transparent border-b border-stone-300 py-3 focus:outline-none focus:border-[#c89b3c] transition-colors text-[#1A1A1B] placeholder-transparent" id="email" placeholder="Email" />
+                  <label htmlFor="email" className="absolute left-0 -top-4 text-stone-500 text-[10px] uppercase tracking-[0.2em] font-bold transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:top-3 peer-placeholder-shown:tracking-normal peer-focus:-top-4 peer-focus:text-[10px] peer-focus:text-[#c89b3c]">Email Address</label>
                 </div>
               </div>
 
-              <div className="relative">
-                <textarea rows="4" className="peer w-full bg-transparent border-b border-stone-200 py-3 focus:outline-none focus:border-stone-800 transition-colors text-stone-800 placeholder-transparent resize-none" id="msg" placeholder="Message" />
-                <label htmlFor="msg" className="absolute left-0 -top-3.5 text-stone-400 text-xs uppercase tracking-widest transition-all peer-placeholder-shown:text-base peer-placeholder-shown:top-3 peer-placeholder-shown:tracking-normal peer-focus:-top-3.5 peer-focus:text-xs peer-focus:tracking-widest peer-focus:text-stone-800">Your Vision / Inquiry</label>
+              <div className="relative group">
+                <textarea rows="3" className="peer w-full bg-transparent border-b border-stone-300 py-3 focus:outline-none focus:border-[#c89b3c] transition-colors text-[#1A1A1B] placeholder-transparent resize-none" id="msg" placeholder="Message" />
+                <label htmlFor="msg" className="absolute left-0 -top-4 text-stone-500 text-[10px] uppercase tracking-[0.2em] font-bold transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:top-3 peer-placeholder-shown:tracking-normal peer-focus:-top-4 peer-focus:text-[10px] peer-focus:text-[#c89b3c]">How can we help your book grow?</label>
               </div>
 
-              <div className="flex flex-col md:flex-row items-center gap-8 pt-4">
+              <div className="flex flex-col md:flex-row items-center gap-10 pt-6">
                 <motion.button 
-                  whileHover={{ x: 5 }}
-                  className="w-full md:w-auto flex items-center justify-center gap-4 bg-stone-900 text-white px-10 py-5 rounded-full font-bold text-sm tracking-widest transition-shadow hover:shadow-xl"
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  className="w-full md:w-auto flex items-center justify-center gap-4 bg-[#1A1A1B] text-white px-12 py-5 rounded-full font-bold text-xs tracking-[0.2em] transition-all hover:bg-[#c89b3c] hover:shadow-2xl shadow-[#c89b3c]/20"
                 >
-                  SEND MESSAGE <FiArrowRight />
+                  SEND ENQUIRY <FiArrowRight className="text-lg" />
                 </motion.button>
 
-                <div className="flex gap-6 text-stone-400">
-                  <a href="#" className="hover:text-stone-900 transition-colors"><FiInstagram size={20} /></a>
-                  <a href="#" className="hover:text-stone-900 transition-colors"><FiTwitter size={20} /></a>
-                  <a href="#" className="hover:text-stone-900 transition-colors"><FiMail size={20} /></a>
+                <div className="flex gap-8 text-stone-500">
+                  <a href="#" className="hover:text-[#c89b3c] transition-colors duration-300"><FiInstagram size={22} /></a>
+                  <a href="#" className="hover:text-[#c89b3c] transition-colors duration-300"><FiLinkedin size={22} /></a>
+                  <a href="#" className="hover:text-[#c89b3c] transition-colors duration-300"><FiMail size={22} /></a>
                 </div>
               </div>
             </form>
