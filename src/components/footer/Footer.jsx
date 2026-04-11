@@ -6,10 +6,10 @@ const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   const socialLinks = [
-    { id: 1, name: 'Instagram', icon: <FiInstagram />, link: 'https://instagram.com/bookswithvansh' },
-    { id: 2, name: 'LinkedIn', icon: <FiLinkedin />, link: '#' },
-    { id: 3, name: 'Email', icon: <FiMail />, link: 'mailto:bookswithvansh@gmail.com' },
-    { id: 4, name: 'Call', icon: <FiPhone />, link: 'tel:9140264635' },
+    { id: 1,  icon: <FiInstagram />, link: 'https://instagram.com/bookswithvansh' },
+    { id: 2,  icon: <FiLinkedin />, link: '#' },
+    { id: 3,  icon: <FiMail />, link: 'mailto:bookswithvansh@gmail.com' },
+    { id: 4,  icon: <FiPhone />, link: 'tel:9140264635' },
   ];
 
   const scrollToTop = () => {

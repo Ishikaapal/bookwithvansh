@@ -1,6 +1,11 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-
+import IC from "../../assets/media/IC.jpg";
+import GD from "../../assets/media/GD.jpg";
+import SMM from "../../assets/media/SMM.jpg";
+import SMP from "../../assets/media/SMP.jpg";
+import WD from "../../assets/media/WD.jpg";
+import VE from "../../assets/media/VE.jpg";
 const Services = () => {
   const [expandedIndex, setExpandedIndex] = useState(0); // Default first one open like the video
 
@@ -9,37 +14,37 @@ const Services = () => {
       title: "Influencer Campaigns",
       description: "Connect your narrative with trusted bookstagrammers and bloggers who match your genre and audience. We amplify reach through authentic reader communities.",
       icon: "🕊️",
-      img: "https://images.unsplash.com/photo-1516979187457-637abb4f9353?q=80&w=2070", 
+      img: IC, 
     },
     {
       title: "Social Media Promotion",
       description: "Strategic campaigns designed to grow your author presence and increase visibility across platforms like Instagram and Facebook.",
       icon: "📈",
-      img: "https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?q=80&w=1974",
+      img: SMP,
     },
     {
       title: "Website Development",
       description: "Professional author websites and book landing pages that showcase your work, build credibility, and convert visitors into loyal readers.",
       icon: "🌐",
-      img: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2015",
+      img: WD,
     },
     {
       title: "Video Editing",
       description: "Engaging short-form videos for Reels, Shorts, and TikTok designed to capture attention and reach new readers visually.",
       icon: "🎬",
-      img: "https://images.unsplash.com/photo-1536243298747-ea8874136d64?q=80&w=1974",
+      img: VE,
     },
     {
       title: "Graphic Design",
       description: "Creative visual designs for book promotions and marketing campaigns that make your content stand out and leave a lasting impression.",
       icon: "🎨",
-      img: "https://images.unsplash.com/photo-1558655146-d09347e92766?q=80&w=1964",
+      img: GD,
     },
     {
       title: "Social Media Management",
       description: "Strategic campaigns designed to grow your author presence and increase visibility across platforms like Instagram and Facebook.",
       icon: "📈",
-      img: "https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?q=80&w=1974",
+      img: SMM,
     },
   ];
 
@@ -96,7 +101,7 @@ const Services = () => {
                   <span className="text-3xl filter drop-shadow-[0_0_10px_rgba(200,155,60,0.5)]">
                     {service.icon}
                   </span>
-                  <h3 className={`text-xl font-serif font-bold text-primary transition-all duration-300 ${expandedIndex === index ? 'opacity-100' : 'md:rotate-90 md:origin-left md:absolute md:left-12 md:top-40 md:w-max'}`}>
+                  <h3 className={`text-xl font-serif font-bold text-background transition-all duration-300 ${expandedIndex === index ? 'opacity-100' : 'md:rotate-90 md:origin-left md:absolute md:left-12 md:top-40 md:w-max'}`}>
                     {service.title}
                   </h3>
                 </div>

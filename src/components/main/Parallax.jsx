@@ -114,7 +114,7 @@ const Parallax = () => {
             style={{ opacity: useTransform(smoothProgress, [0, 0.2], [1, 0]) }}
             className="z-0 text-center pointer-events-none"
           >
-            <h1 className="text-primary-dark font-serif italic text-6xl">Books Are Amazing</h1>
+            <h1 className="text-primary-dark font-serif italic text-[8vw]">Books Are Amazing</h1>
           </motion.div>
 
           {floatingBooks.map((book) => (

@@ -2,6 +2,9 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { FiCheckCircle, FiTarget, FiZap, FiLayout, FiTrendingUp, FiUser, FiEdit3 } from 'react-icons/fi';
 
+// 1. IMPORT YOUR IMAGE
+import bgImage from '../../assets/media/2.png';
+
 const WhyUs = () => {
   const reasons = [
     {
@@ -47,27 +50,23 @@ const WhyUs = () => {
       
       {/* --- REFRESHED BACKGROUND DECORATION --- */}
       
-      {/* 1. GEOMETRIC BACKGROUND TEXTURE */}
-      <div className="absolute inset-0 opacity-30 select-none pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/natural-paper.png')]" />
-      
-      {/* 2. TOP-RIGHT AMBER POP */}
-      <div className="absolute top-0 right-[-10%] w-[600px] h-[600px] bg-gradient-radial from-amber-100/70 to-transparent blur-[120px] rounded-full -translate-y-1/2 pointer-events-none z-0" />
-      
-      {/* 3. BOTTOM-LEFT PURPLE POP */}
-      <div className="absolute bottom-[-10%] left-[-15%] w-[800px] h-[800px] bg-gradient-radial from-purple-100/60 to-transparent blur-[140px] rounded-full translate-y-1/2 pointer-events-none z-0" />
-
-      {/* 4. FLOATING INK MOTIFS (Reinforces Theme) */}
-      <div className="absolute inset-0 pointer-events-none opacity-5 z-0">
-        <FiEdit3 className="absolute top-[20%] left-[10%] text-[20vw] rotate-12" />
-        <FiEdit3 className="absolute bottom-[20%] right-[10%] text-[15vw] -rotate-12" />
+      {/* 2. FULL BACKGROUND IMAGE LAYER */}
+      <div className="absolute inset-0 z-0">
+        <img 
+          src={bgImage} 
+          alt="Background Texture" 
+          className="w-full h-full object-cover opacity-[0.15]" // Subtle opacity so it doesn't overwhelm the text
+        />
+        {/* Slight parchment overlay to keep the "Books" theme consistent */}
+        <div className="absolute inset-0  backdrop-blur-[2px]" />
       </div>
-
+      
+      
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         
         {/* --- SECTION HEADER --- */}
         <div className="text-center max-w-3xl mx-auto mb-20">
-          
-          <span className="inline-block py-1.5 px-5 rounded-full border border-primary/20 bg-background-soft/80 text-primary-dark text-xs font-bold tracking-[0.25em] uppercase mb-8 backdrop-blur-md shadow-sm">
+          <span className="inline-block py-1.5 px-5 rounded-full border border-stone-200 bg-white/80 text-primary-dark text-xs font-bold tracking-[0.25em] uppercase mb-8 backdrop-blur-md shadow-sm">
             The Distinction
           </span>
           <motion.h2 
@@ -78,7 +77,7 @@ const WhyUs = () => {
             className="text-5xl md:text-7xl font-serif font-bold text-text-primary leading-tight"
           >
             Why Choose <br />
-            <span className="italic text-primary">Books With Vansh</span>
+            <span className="italic text-[#c89b3c]">Books With Vansh</span>
           </motion.h2 >
         </div>
 
@@ -92,17 +91,17 @@ const WhyUs = () => {
               viewport={{ once: true }}
               transition={{ delay: idx * 0.1, duration: 0.6 }}
               whileHover={{ y: -10 }}
-              className="group relative p-10 rounded-[3rem] bg-white border border-stone-100 hover:border-primary/20 transition-all duration-500 shadow-sm hover:shadow-2xl hover:shadow-primary/5"
+              className="group relative p-10 rounded-[3rem] bg-white/90 backdrop-blur-sm border border-stone-100 hover:border-[#c89b3c]/20 transition-all duration-500 shadow-sm hover:shadow-2xl"
             >
               {/* Subtle Gradient Glow */}
               <div className={`absolute inset-0 bg-gradient-to-br ${reason.color} to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-[3rem]`} />
               
               <div className="relative z-10">
-                <div className="w-14 h-14 bg-background-soft rounded-2xl flex items-center justify-center text-primary text-2xl mb-8 group-hover:bg-primary group-hover:text-white transition-all duration-500 shadow-inner border border-stone-100">
+                <div className="w-14 h-14 bg-[#FAF9F6] rounded-2xl flex items-center justify-center text-[#c89b3c] text-2xl mb-8 group-hover:bg-[#c89b3c] group-hover:text-white transition-all duration-500 shadow-inner border border-stone-100">
                   {reason.icon}
                 </div>
                 
-                <h3 className="text-2xl font-serif font-bold text-text-primary mb-4 group-hover:text-primary transition-colors">
+                <h3 className="text-2xl font-serif font-bold text-text-primary mb-4 group-hover:text-[#c89b3c] transition-colors">
                   {reason.title}
                 </h3>
                 
@@ -110,8 +109,7 @@ const WhyUs = () => {
                   {reason.desc}
                 </p>
                 
-                {/* Floating Decorative Dot */}
-                <div className="absolute top-6 right-6 w-2 h-2 rounded-full bg-primary/20 group-hover:bg-primary transition-colors duration-500" />
+                <div className="absolute top-6 right-6 w-2 h-2 rounded-full bg-[#c89b3c]/20 group-hover:bg-[#c89b3c] transition-colors duration-500" />
               </div>
             </motion.div>
           ))}
@@ -125,7 +123,6 @@ const WhyUs = () => {
           className="mt-20 pt-10 border-t border-black/5 flex flex-col md:flex-row items-center justify-between gap-8 opacity-60 z-10 relative"
         >
           <div className="flex gap-12 grayscale opacity-50 hover:grayscale-0 hover:opacity-100 transition-all">
-             {/* Imagine subtle book icon shapes or partner placeholders here */}
              <span className="font-serif italic font-bold text-xl">Authors First</span>
              <span className="font-serif italic font-bold text-xl">Digital Growth</span>
              <span className="font-serif italic font-bold text-xl">Creative Soul</span>
