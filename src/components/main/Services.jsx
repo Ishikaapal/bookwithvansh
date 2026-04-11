@@ -61,7 +61,7 @@ const Services = () => {
                     transition={{ delay: 0.2 }}
                     className="text-5xl md:text-7xl font-serif font-bold text-text-primary leading-tight"
                   >
-                    Our Services <br />
+                    Our <span className='text-primary'>Services</span>
                   </motion.h2 >
                 </div>
 

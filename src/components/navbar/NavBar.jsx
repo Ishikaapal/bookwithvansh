@@ -39,12 +39,11 @@ const NavBar = () => {
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           
           {/* Logo Section */}
-          <a href="#" className="flex items-center gap-2 group cursor-pointer">
-            <img src={logo} alt='logo' className="contain w-18 h-18" />
-            <span className="text-text-primary font-serif font-bold text-xl tracking-tight">
-              BooksWith<span className="text-primary">Vansh</span>
-            </span>
-          </a>
+          <motion.a href="/" 
+            whileHover={{scale:1.1}} whileTap={{scale:0.94}} 
+            className="flex items-center gap-2 group cursor-pointer">
+              <img src={logo} alt="logo" className="w-28 h-auto object-cover" />
+          </motion.a>
 
           {/* Desktop Links */}
           <div className="hidden md:flex items-center gap-10">
@@ -62,7 +61,7 @@ const NavBar = () => {
 
           {/* Contact CTA (Desktop) */}
           <div className="hidden md:block">
-            <a
+            <a 
               href="#contact"
               className="px-7 py-3 bg-primary hover:bg-primary-dark text-background font-bold rounded-2xl shadow-xl shadow-primary/20 transition-all hover:-translate-y-0.5 active:scale-95"
             >
