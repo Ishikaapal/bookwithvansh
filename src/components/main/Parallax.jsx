@@ -45,7 +45,7 @@ const FloatingBook = ({ book, progress }) => {
         
         <div className="relative w-full h-full bg-neutral-900 rounded-sm border border-white/10 overflow-hidden ring-1 ring-white/5">
           <img
-            src={`https://picsum.photos/seed/${book.id + 123}/400/600`}
+            src={new URL(`../../assets/coverPage/${book.id}C.png`, import.meta.url).href}
             alt="Book Cover"
             className="w-full h-full object-cover grayscale-[30%] group-hover:grayscale-0 transition-all duration-700"
             loading="lazy"
