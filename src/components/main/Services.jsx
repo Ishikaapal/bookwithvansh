@@ -85,22 +85,22 @@ const Services = () => {
                 />
 
                 {/* Stronger overlay for readability */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/60 to-black/40 backdrop-blur-[1px]" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/60 to-black/40 backdrop-blur-[2px]" />
               </div>
 
               {/* Content */}
               <div className="relative h-full flex flex-col justify-end px-6 md:p-8">
                 {/* Title */}
-                <h3
-                  className={`font-serif font-bold text-background transition-all duration-500
-          ${
-            expandedIndex === index
-              ? "text-3xl md:text-4xl mb-3"
-              : "text-2xl md:text-3xl md:rotate-90 md:absolute md:left-12 md:top-1/2 md:-translate-y-1/2 md:origin-left"
-          }`}
-                >
-                  {service.title}
-                </h3>
+<h3
+  className={`font-serif font-bold text-background transition-all duration-500 whitespace-nowrap
+  ${
+    expandedIndex === index
+      ? "text-xl md:text-2xl mb-3 text-left" 
+      : "text-xl md:text-2xl md:rotate-90 md:absolute md:left-1/2 md:top-1/2 md:-translate-x-1/2 md:-translate-y-1/2 md:origin-center text-center"
+  }`}
+>
+  {service.title}
+</h3>
 
                 {/* Description */}
                 <AnimatePresence>

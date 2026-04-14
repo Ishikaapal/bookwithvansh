@@ -1,12 +1,18 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
-import { FiArrowRight, FiInstagram, FiLinkedin, FiMail } from 'react-icons/fi';
+import { FiArrowRight, FiInstagram, FiLinkedin, FiMail, FiCheckCircle, FiLoader } from 'react-icons/fi';
 
-// 1. IMPORT YOUR IMAGE
 import contactBg from '../../assets/media/Contact.png';
 
 const Contact = () => {
   const containerRef = useRef(null);
+  
+  // --- FORMSPREE STATE ---
+  const [status, setStatus] = useState({
+    submitting: false,
+    submitted: false,
+    error: null,
+  });
 
   // 3D Tilt Logic
   const x = useMotionValue(0);
@@ -24,25 +30,59 @@ const Contact = () => {
     y.set((e.clientY - rect.top) / rect.height - 0.5);
   };
 
+  // --- SUBMISSION HANDLER ---
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setStatus({ submitting: true, submitted: false, error: null });
+
+    const formData = new FormData(e.target);
+    
+    try {
+      const response = await fetch("https://formspree.io/f/mlgadlrp", {
+        method: "POST",
+        body: formData,
+        headers: {
+          'Accept': 'application/json'
+        }
+      });
+
+      if (response.ok) {
+        setStatus({ submitting: false, submitted: true, error: null });
+        e.target.reset(); // Clear the form fields
+
+        // --- RESET FOR NEW SUBMISSION ---
+        // After 5 seconds, reset the submitted state so they can send another enquiry
+        setTimeout(() => {
+          setStatus((prev) => ({ ...prev, submitted: false }));
+        }, 5000);
+
+      } else {
+        const data = await response.json();
+        throw new Error(data.error || "Something went wrong");
+      }
+    } catch (err) {
+      setStatus({ submitting: false, submitted: false, error: err.message });
+    }
+  };
+
   return (
     <div 
       ref={containerRef}
       onMouseMove={handleMouseMove}
-      className="mainContainer rowFlex"
+      className="mainContainer rowFlex relative overflow-hidden"
     >
-      {/* --- BACKGROUND IMAGE LAYER --- */}
+      {/* BACKGROUND IMAGE LAYER */}
       <div className="absolute inset-0 z-0">
         <img 
           src={contactBg} 
           alt="Contact Background" 
-          className="w-full h-full object-cover opacity-30" // Lower opacity to keep the light theme feel
+          className="w-full h-full object-cover opacity-30"
         />
-        {/* Cinematic Overlays: Keeps text readable and merges image with the theme */}
-        <div className="absolute inset-0 bg-gradient-to-b from-[#FAF9F6] via-transparent to-[#FAF9F6] z-6" />
-        <div className="absolute inset-0 bg-[#FAF9F6]/40 backdrop-blur-[2px] z-10" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#FAF9F6] via-transparent to-[#FAF9F6] z-[5]" />
+        <div className="absolute inset-0 bg-[#FAF9F6]/40 backdrop-blur-[2px] z-[10]" />
       </div>
       
-      <div className="insideContainer w-full grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-8 items-center ">
+      <div className="insideContainer relative z-20 w-full grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-8 items-center">
         
         {/* LEFT SIDE: THE PREMIUM BOOK SCULPTURE */}
         <div className="lg:col-span-5 relative flex justify-center items-center perspective-[1500px]">
@@ -54,13 +94,11 @@ const Contact = () => {
           >
             <div className="absolute left-0 top-0 w-[45px] h-full bg-text-primary z-20 rounded-l-sm flex items-center justify-center">
                <div className="rotate-90 whitespace-nowrap text-[9px] tracking-[0.5em] text-primary font-bold uppercase">
-                  Books With Vansh 
+                 Books With Vansh 
                </div>
             </div>
 
             <div className="absolute inset-0 ml-[43px] bg-white rounded-r-md border-y border-r border-stone-100 p-10 flex flex-col justify-between overflow-hidden">
-              
-              
               <div className="relative z-10">
                 <div className="w-10 h-[3px] bg-primary mb-8" />
                 <h3 className="text-3xl md:text-4xl font-serif text-text-primary leading-[1.1] mb-2">
@@ -101,31 +139,60 @@ const Contact = () => {
               </h2>
             </header>
 
-            <form className="space-y-12" onSubmit={(e) => e.preventDefault()}>
+            <form className="space-y-12" onSubmit={handleSubmit}>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
                 <div className="relative group">
-                  <input type="text" required className="peer w-full bg-transparent border-b border-stone-300 py-3 focus:outline-none focus:border-primary transition-colors text-text-primary placeholder-transparent" id="name" placeholder="Name" />
+                  <input 
+                    name="name" 
+                    type="text" 
+                    required 
+                    className="peer w-full bg-transparent border-b border-stone-300 py-3 focus:outline-none focus:border-primary transition-colors text-text-primary placeholder-transparent" 
+                    id="name" 
+                    placeholder="Name" 
+                  />
                   <label htmlFor="name" className="absolute left-0 -top-4 text-stone-500 text-[10px] uppercase tracking-[0.2em] font-bold transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:top-3 peer-placeholder-shown:tracking-normal peer-focus:-top-4 peer-focus:text-[10px] peer-focus:text-primary">Full Name</label>
                 </div>
 
                 <div className="relative group">
-                  <input type="email" required className="peer w-full bg-transparent border-b border-stone-300 py-3 focus:outline-none focus:border-primary transition-colors text-text-primary placeholder-transparent" id="email" placeholder="Email" />
+                  <input 
+                    name="email" 
+                    type="email" 
+                    required 
+                    className="peer w-full bg-transparent border-b border-stone-300 py-3 focus:outline-none focus:border-primary transition-colors text-text-primary placeholder-transparent" 
+                    id="email" 
+                    placeholder="Email" 
+                  />
                   <label htmlFor="email" className="absolute left-0 -top-4 text-stone-500 text-[10px] uppercase tracking-[0.2em] font-bold transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:top-3 peer-placeholder-shown:tracking-normal peer-focus:-top-4 peer-focus:text-[10px] peer-focus:text-primary">Email Address</label>
                 </div>
               </div>
 
               <div className="relative group">
-                <textarea rows="3" className="peer w-full bg-transparent border-b border-stone-300 py-3 focus:outline-none focus:border-primary transition-colors text-text-primary placeholder-transparent resize-none" id="msg" placeholder="Message" />
+                <textarea 
+                  name="message" 
+                  rows="3" 
+                  required
+                  className="peer w-full bg-transparent border-b border-stone-300 py-3 focus:outline-none focus:border-primary transition-colors text-text-primary placeholder-transparent resize-none" 
+                  id="msg" 
+                  placeholder="Message" 
+                />
                 <label htmlFor="msg" className="absolute left-0 -top-4 text-stone-500 text-[10px] uppercase tracking-[0.2em] font-bold transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:top-3 peer-placeholder-shown:tracking-normal peer-focus:-top-4 peer-focus:text-[10px] peer-focus:text-primary">How can we help your book grow?</label>
               </div>
 
               <div className="flex flex-col md:flex-row items-center gap-10 pt-6">
                 <motion.button 
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                  className="w-full md:w-auto flex items-center justify-center gap-4 bg-text-primary text-white px-12 py-5 rounded-full font-bold text-xs tracking-[0.2em] transition-all hover:bg-primary hover:shadow-2xl shadow-primary/20"
+                  disabled={status.submitting}
+                  whileHover={!status.submitted ? { scale: 1.02 } : {}}
+                  whileTap={!status.submitted ? { scale: 0.98 } : {}}
+                  className={`w-full md:w-auto flex items-center justify-center gap-4 px-12 py-5 rounded-full font-bold text-xs tracking-[0.2em] transition-all shadow-primary/20 disabled:opacity-70 
+                    ${status.submitted ? 'bg-green-600 text-white' : 'bg-text-primary text-white hover:bg-primary hover:shadow-2xl'}`}
                 >
-                  SEND ENQUIRY <FiArrowRight className="text-lg" />
+                  {status.submitting ? (
+                    <>SENDING... <FiLoader className="animate-spin text-lg" /></>
+                  ) : status.submitted ? (
+                    <>SENT SUCCESSFULLY <FiCheckCircle className="text-lg" /></>
+                  ) : (
+                    <>SEND ENQUIRY <FiArrowRight className="text-lg" /></>
+                  )}
                 </motion.button>
 
                 <div className="flex gap-8 text-stone-500">
@@ -134,10 +201,25 @@ const Contact = () => {
                   <a href="mailto:bookswithvansh@gmail.com" target='__blank' className="hover:text-primary transition-colors duration-300"><FiMail size={22} /></a>
                 </div>
               </div>
+
+              {/* Status Messages */}
+              <div className="h-6"> {/* Fixed height to prevent layout jump */}
+                {status.error && (
+                  <p className="text-red-500 text-xs font-bold mt-4 uppercase tracking-widest">{status.error}</p>
+                )}
+                {status.submitted && (
+                  <motion.p 
+                    initial={{ opacity: 0, y: 5 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="text-primary text-xs font-bold mt-4 uppercase tracking-widest"
+                  >
+                    Thank you! Your message has been sent.
+                  </motion.p>
+                )}
+              </div>
             </form>
           </div>
         </div>
-
       </div>
     </div>
   );

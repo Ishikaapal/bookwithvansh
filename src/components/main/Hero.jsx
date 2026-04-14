@@ -76,7 +76,7 @@ const Hero = () => {
             </a>
             
             <a href='#contact' className="text-text-primary border-2 border-primary px-10 py-5 rounded-2xl font-bold group flex items-center gap-3 transition-all hover:shadow-2xl hover:bg-primary hover:-translate-y-1 active:scale-95">
-              Explore Our Work
+              Connect Now
               <div className="relative w-10 h-[2px] bg-primary overflow-hidden">
                 <motion.div 
                   animate={{ x: [-40, 40] }} 

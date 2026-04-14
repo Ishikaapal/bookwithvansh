@@ -1,19 +1,47 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import { FiInstagram, FiLinkedin, FiMail, FiPhone, FiArrowUp, FiSend } from 'react-icons/fi';
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { FiInstagram, FiLinkedin, FiMail, FiPhone, FiArrowUp, FiSend, FiCheckCircle } from 'react-icons/fi';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
+  const [status, setStatus] = useState(null); // 'loading', 'success', 'error'
 
   const socialLinks = [
-    { id: 1, name:"Instagram",  icon: <FiInstagram />, link: 'https://instagram.com/bookswithvansh' },
-    { id: 2, name:"LinkedIn",  icon: <FiLinkedin />, link: '#' },
-    { id: 3, name:"Email",  icon: <FiMail />, link: 'mailto:bookswithvansh@gmail.com' },
-    { id: 4, name:"Phone",  icon: <FiPhone />, link: 'tel:9140264635' },
+    { id: 1, name: "Instagram", icon: <FiInstagram />, link: 'https://instagram.com/bookswithvansh' },
+    { id: 2, name: "LinkedIn", icon: <FiLinkedin />, link: '#' },
+    { id: 3, name: "Email", icon: <FiMail />, link: 'mailto:bookswithvansh@gmail.com' },
+    { id: 4, name: "Phone", icon: <FiPhone />, link: 'tel:9140264635' },
   ];
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setStatus('loading');
+    
+    const form = e.target;
+    const data = new FormData(form);
+
+    try {
+      const response = await fetch("https://formspree.io/f/mnjlnzqp", {
+        method: "POST",
+        body: data,
+        headers: { 'Accept': 'application/json' }
+      });
+
+      if (response.ok) {
+        setStatus('success');
+        form.reset();
+        // Reset success message after 5 seconds
+        setTimeout(() => setStatus(null), 5000);
+      } else {
+        setStatus('error');
+      }
+    } catch (error) {
+      setStatus('error');
+    }
   };
 
   return (
@@ -26,7 +54,7 @@ const Footer = () => {
         </h2>
       </div>
 
-      <div className="insideContainer">
+      <div className="insideContainer relative z-10">
         
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center border-b border-background/10 pb-20">
           
@@ -57,21 +85,48 @@ const Footer = () => {
               className="relative group"
             >
               <h4 className="text-background font-serif text-xl mb-6 italic">Subscribe for Literary Insights</h4>
-              <form className="relative flex items-center">
-                <input 
-                  type="email" 
-                  placeholder="Your Email Address" 
-                  className="w-full bg-transparent border-b border-background/10 py-4 text-background placeholder:text-gray-600 focus:outline-none focus:border-primary transition-all duration-500"
-                />
-                <button 
-                  type="submit" 
-                  className="absolute right-0 p-2 text-primary hover:text-background transition-colors"
-                >
-                  <FiSend className="text-xl" />
-                </button>
-                {/* Shimmer underline effect */}
-                <div className="absolute bottom-0 left-0 h-px w-0 bg-primary group-hover:w-full transition-all duration-700" />
-              </form>
+              
+              <AnimatePresence mode="wait">
+                {status === 'success' ? (
+                  <motion.div 
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0 }}
+                    className="flex items-center gap-3 py-4 text-primary"
+                  >
+                    <FiCheckCircle className="text-2xl" />
+                    <span className="font-bold tracking-widest uppercase text-xs">Welcome to the inner circle!</span>
+                  </motion.div>
+                ) : (
+                  <form onSubmit={handleSubmit} className="relative flex items-center">
+                    <input 
+                      required
+                      type="email" 
+                      name="email"
+                      placeholder="Your Email Address" 
+                      disabled={status === 'loading'}
+                      className="w-full bg-transparent border-b border-background/10 py-4 text-background placeholder:text-gray-600 focus:outline-none focus:border-primary transition-all duration-500 disabled:opacity-50"
+                    />
+                    <button 
+                      type="submit" 
+                      disabled={status === 'loading'}
+                      className="absolute right-0 p-2 text-primary hover:text-background transition-colors disabled:opacity-50"
+                    >
+                      {status === 'loading' ? (
+                        <div className="w-5 h-5 border-2 border-primary border-t-transparent rounded-full animate-spin" />
+                      ) : (
+                        <FiSend className="text-xl" />
+                      )}
+                    </button>
+                    <div className="absolute bottom-0 left-0 h-px w-0 bg-primary group-hover:w-full transition-all duration-700" />
+                  </form>
+                )}
+              </AnimatePresence>
+
+              {status === 'error' && (
+                <p className="text-red-500 text-[10px] mt-2 uppercase tracking-widest">Something went wrong. Please try again.</p>
+              )}
+              
               <p className="text-[9px] uppercase tracking-widest text-gray-600 mt-4">Join 500+ authors getting weekly branding tips.</p>
             </motion.div>
 
@@ -102,7 +157,6 @@ const Footer = () => {
         {/* 2. SECONDARY LINKS & COPYRIGHT */}
         <div className="py-4 flex flex-col md:flex-row justify-between items-center gap-8">
           
-          {/* Back to Top - Floating Circle */}
           <motion.button
             onClick={scrollToTop}
             whileHover={{ scale: 1.1, backgroundColor: '#c89b3c' }}
@@ -119,7 +173,6 @@ const Footer = () => {
 
       </div>
 
-      {/* 3. DECORATIVE GRADIENT FADE (Top Border) */}
       <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
 
     </footer>
