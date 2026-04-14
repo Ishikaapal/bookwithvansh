@@ -8,7 +8,7 @@ function App() {
 
   return (
     <>
-      <BrowserRouter basename='//BookWithVansh/'>
+      <BrowserRouter>
       <Routes>
         <Route index element = {<Home/>}/>
         <Route path = "*" element = {<NotFound/>}/> 
