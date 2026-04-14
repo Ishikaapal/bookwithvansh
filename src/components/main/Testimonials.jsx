@@ -9,19 +9,19 @@ const Testimonials = () => {
     {
       name: "Ketaki Pawar",
       role: "Author — The Emotional Reset",
-      quote: "His review was incredibly thoughtful and insightful. He truly understands how to capture the essence of a book and present it in a way that resonates with readers.",
+      quote: "His review was incredibly thoughtful and insightful. He has a special talent for diving deep into the material and capturing the essence of a book. Thank you for handling my work with such professionalism and care.",
       accent: "from-amber-200/20"
     },
     {
       name: "Maria",
       role: "Author — Unbreakable Determination",
-      quote: "I’m really happy with the website they created for me. The design looks modern, works smoothly, and perfectly reflects my vision as an author.",
+      quote: "You did so good on the review I'm so happy with the outcome of your review, I'd love to work with you in the future with other books I will write. Thank You",
       accent: "from-blue-200/20"
     },
     {
-      name: "Aksindiagroup",
-      role: "Marketing Partner",
-      quote: "The promotional creatives and marketing support helped our content reach a much wider audience. The team understands digital promotion very well.",
+      name: "Anil Kumar Sadhak",
+      role: "Aks India Group Head",
+      quote: "I’m really happy with the website they built for me. It looks modern, works smoothly, and perfectly matches what I had in mind. The team was quick, helpful, and easy to work with. Highly recommend them", 
       accent: "from-emerald-200/20"
     },
     {
@@ -39,7 +39,7 @@ const Testimonials = () => {
   ];
 
   return (
-    <section className="relative min-h-screen w-full bg-[#0A0A0B] flex items-center justify-center overflow-hidden py-24">
+    <div className="mainContainer rowFlex bg-[#000]">
       
       {/* --- BACKGROUND KINETIC LAYER --- */}
       <div className="absolute inset-0 z-0 opacity-30">
@@ -58,7 +58,7 @@ const Testimonials = () => {
         <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 brightness-50" />
       </div>
 
-      <div className="max-w-7xl mx-auto px-6 w-full grid grid-cols-1 lg:grid-cols-12 gap-16 relative z-10">
+      <div className="insideContainer  w-full grid grid-cols-1 lg:grid-cols-12 gap-16">
         
         {/* --- LEFT SIDE: THE NAVIGATOR --- */}
         <div className="lg:col-span-5 flex flex-col justify-center space-y-2">
@@ -80,7 +80,7 @@ const Testimonials = () => {
                   }}
                   className="h-[1px] bg-primary"
                 />
-                <span className={`text-2xl md:text-4xl font-serif transition-all duration-500 ${activeIndex === idx ? 'text-white translate-x-2' : 'text-white/20 hover:text-white/40'}`}>
+                <span className={`text-2xl md:text-3xl font-serif transition-all duration-500 ${activeIndex === idx ? 'text-background translate-x-2' : 'text-background/20 hover:text-background/40'}`}>
                   {item.name}
                 </span>
                 {activeIndex === idx && (
@@ -108,10 +108,10 @@ const Testimonials = () => {
               className="relative"
             >
               {/* Massive Backdrop Quote Mark */}
-              <span className="absolute -top-20 -left-10 text-[200px] font-serif text-white/5 select-none">“</span>
+              <span className="absolute -top-20 -left-20 text-[200px] font-serif text-background/55 select-none">“</span>
               
               <div className="relative">
-                <p className="text-2xl md:text-4xl lg:text-5xl font-serif text-white leading-[1.4] italic tracking-tight">
+                <p className="text-2xl md:text-3xl lg:text-4xl font-serif text-background leading-[1.4] italic tracking-tight">
                   {testimonials[activeIndex].quote}
                 </p>
                 
@@ -123,7 +123,7 @@ const Testimonials = () => {
                 />
                 
                 <div className="mt-8">
-                  <h4 className="text-white font-bold text-lg uppercase tracking-tighter">
+                  <h4 className="text-background font-bold text-lg uppercase tracking-tighter">
                     {testimonials[activeIndex].name}
                   </h4>
                   <p className="text-primary text-xs font-medium opacity-80">
@@ -138,11 +138,11 @@ const Testimonials = () => {
       </div>
 
       {/* Decorative Corner Numbers */}
-      <div className="absolute bottom-12 right-12 md:left-12 font-serif text-white/10 text-9xl pointer-events-none">
+      <div className="absolute bottom-12 right-12 md:left-12 font-serif text-background/10 text-9xl pointer-events-none">
         0{activeIndex + 1}
       </div>
 
-    </section>
+    </div>
   );
 };
 

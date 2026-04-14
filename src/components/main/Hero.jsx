@@ -13,7 +13,7 @@ const Hero = () => {
   const textY = useTransform(scrollY, [0, 500], [0, -40]);
 
   return (
-    <div className="mainContainer rowFlex ">
+    <div className="mainContainer rowFlex">
       
       {/* --- VIDEO LAYER --- */}
       <motion.div 
@@ -70,12 +70,12 @@ const Hero = () => {
           </p>
 
           <div className="mt-12 flex flex-col sm:flex-row items-center justify-center gap-8">
-            <button className="group relative px-10 py-5 bg-primary text-background font-bold rounded-2xl overflow-hidden transition-all hover:shadow-2xl hover:shadow-primary/40 hover:-translate-y-1 active:scale-95">
+            <a href="tel:+91 9140264635" className="group relative px-10 py-5 bg-primary text-background font-bold rounded-2xl overflow-hidden transition-all hover:shadow-2xl hover:shadow-primary/40 hover:-translate-y-1 active:scale-95">
               <span className="relative z-10">📞 Book a Free Strategy Call</span>
               <div className="absolute inset-0 bg-primary-dark opacity-0 group-hover:opacity-100 transition-opacity" />
-            </button>
+            </a>
             
-            <button className="text-text-primary border-2 border-primary px-10 py-5 rounded-2xl font-bold group flex items-center gap-3 transition-all hover:shadow-2xl hover:bg-primary hover:-translate-y-1 active:scale-95">
+            <a href='#contact' className="text-text-primary border-2 border-primary px-10 py-5 rounded-2xl font-bold group flex items-center gap-3 transition-all hover:shadow-2xl hover:bg-primary hover:-translate-y-1 active:scale-95">
               Explore Our Work
               <div className="relative w-10 h-[2px] bg-primary overflow-hidden">
                 <motion.div 
@@ -84,7 +84,7 @@ const Hero = () => {
                   className="absolute inset-0 bg-white/50 w-full"
                 />
               </div>
-            </button>
+            </a>
           </div>
         </motion.div>
       </motion.div>
@@ -93,10 +93,10 @@ const Hero = () => {
       <motion.div 
         animate={{ y: [0, 12, 0] }}
         transition={{ duration: 2.5, repeat: Infinity }}
-        className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-40"
+        className="absolute bottom-3 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
       >
         <span className="text-[10px] uppercase tracking-[0.3em] font-bold text-primary-dark">Scroll</span>
-        <Mouse  className='w-8 h-8 text-primary-dark'/>
+        <Mouse  className='w-6 h-6 text-primary-dark'/>
       </motion.div>
 
     </div>

@@ -19,7 +19,7 @@ const NavBar = () => {
     { name: 'Home', href: '#' },
     { name: 'About', href: '#about' },
     { name: 'Services', href: '#services' },
-    { name: 'Why Us', href: '#why-choose-us' },
+    { name: 'Why Us', href: '#whyus' },
     { name: 'Testimonials', href: '#testimonials' },
     
   ];
@@ -33,13 +33,13 @@ const NavBar = () => {
   return (
     <>
       <nav 
-        className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-500 px-6 py-4 
+        className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-500 px-4 py-4 
         ${isScrolled || isMenuOpen ? 'bg-background/90 backdrop-blur-xl border-b border-border shadow-sm' : 'bg-transparent'}`}
       >
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           
           {/* Logo Section */}
-          <motion.a href="/" 
+          <motion.a href="/bookwithvansh/" 
             whileHover={{scale:1.1}} whileTap={{scale:0.94}} 
             className="flex items-center gap-2 group cursor-pointer">
               <img src={logo} alt="logo" className="w-28 h-auto object-cover" />

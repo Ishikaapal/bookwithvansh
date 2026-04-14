@@ -4,6 +4,7 @@ import { FiCheckCircle, FiTarget, FiZap, FiLayout, FiTrendingUp, FiUser, FiEdit3
 
 // 1. IMPORT YOUR IMAGE
 import bgImage from '../../assets/media/2.png';
+import SectionHeader from "./SectionHeader";
 
 const WhyUs = () => {
   const reasons = [
@@ -46,10 +47,9 @@ const WhyUs = () => {
   ];
 
   return (
-    <section id="why-choose-us" className="relative py-32 bg-[#FAF9F6] overflow-hidden">
+    <div className="mainContainer">
       
-      {/* --- REFRESHED BACKGROUND DECORATION --- */}
-      
+      {/* --- REFRESHED BACKGROUND DECORATION --- */}      
       {/* 2. FULL BACKGROUND IMAGE LAYER */}
       <div className="absolute inset-0 z-0">
         <img 
@@ -62,24 +62,10 @@ const WhyUs = () => {
       </div>
       
       
-      <div className="max-w-7xl mx-auto px-6 relative z-10">
+      <div className="insideContainer">
         
         {/* --- SECTION HEADER --- */}
-        <div className="text-center max-w-3xl mx-auto mb-20">
-          <span className="inline-block py-1.5 px-5 rounded-full border border-stone-200 bg-white/80 text-primary-dark text-xs font-bold tracking-[0.25em] uppercase mb-8 backdrop-blur-md shadow-sm">
-            The Distinction
-          </span>
-          <motion.h2 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.2 }}
-            className="text-5xl md:text-7xl font-serif font-bold text-text-primary leading-tight"
-          >
-            Why Choose <br />
-            <span className="italic text-[#c89b3c]">Books With Vansh</span>
-          </motion.h2 >
-        </div>
+        <SectionHeader headerSpan="The Distinction" headerH2="Why Choose" headerSpanText="Books With Vansh" />
 
         {/* --- GRID OF REASONS --- */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -91,17 +77,17 @@ const WhyUs = () => {
               viewport={{ once: true }}
               transition={{ delay: idx * 0.1, duration: 0.6 }}
               whileHover={{ y: -10 }}
-              className="group relative p-10 rounded-[3rem] bg-white/90 backdrop-blur-sm border border-stone-100 hover:border-[#c89b3c]/20 transition-all duration-500 shadow-sm hover:shadow-2xl"
+              className="group relative p-10 rounded-[3rem] bg-white/90 backdrop-blur-sm border border-stone-100 hover:border-primary/20 transition-all duration-500 shadow-sm hover:shadow-2xl"
             >
               {/* Subtle Gradient Glow */}
               <div className={`absolute inset-0 bg-gradient-to-br ${reason.color} to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-[3rem]`} />
               
               <div className="relative z-10">
-                <div className="w-14 h-14 bg-[#FAF9F6] rounded-2xl flex items-center justify-center text-[#c89b3c] text-2xl mb-8 group-hover:bg-[#c89b3c] group-hover:text-white transition-all duration-500 shadow-inner border border-stone-100">
+                <div className="w-14 h-14 bg-[#FAF9F6] rounded-2xl flex items-center justify-center text-primary text-2xl mb-8 group-hover:bg-primary group-hover:text-white transition-all duration-500 shadow-inner border border-stone-100">
                   {reason.icon}
                 </div>
                 
-                <h3 className="text-2xl font-serif font-bold text-text-primary mb-4 group-hover:text-[#c89b3c] transition-colors">
+                <h3 className="text-2xl font-serif font-bold text-text-primary mb-4 group-hover:text-primary transition-colors">
                   {reason.title}
                 </h3>
                 
@@ -109,7 +95,7 @@ const WhyUs = () => {
                   {reason.desc}
                 </p>
                 
-                <div className="absolute top-6 right-6 w-2 h-2 rounded-full bg-[#c89b3c]/20 group-hover:bg-[#c89b3c] transition-colors duration-500" />
+                <div className="absolute top-6 right-6 w-2 h-2 rounded-full bg-primary/20 group-hover:bg-primary transition-colors duration-500" />
               </div>
             </motion.div>
           ))}
@@ -133,7 +119,7 @@ const WhyUs = () => {
         </motion.div>
       </div>
 
-    </section>
+    </div>
   );
 };
 

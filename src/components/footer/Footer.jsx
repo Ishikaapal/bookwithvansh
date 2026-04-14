@@ -6,10 +6,10 @@ const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   const socialLinks = [
-    { id: 1,  icon: <FiInstagram />, link: 'https://instagram.com/bookswithvansh' },
-    { id: 2,  icon: <FiLinkedin />, link: '#' },
-    { id: 3,  icon: <FiMail />, link: 'mailto:bookswithvansh@gmail.com' },
-    { id: 4,  icon: <FiPhone />, link: 'tel:9140264635' },
+    { id: 1, name:"Instagram",  icon: <FiInstagram />, link: 'https://instagram.com/bookswithvansh' },
+    { id: 2, name:"LinkedIn",  icon: <FiLinkedin />, link: '#' },
+    { id: 3, name:"Email",  icon: <FiMail />, link: 'mailto:bookswithvansh@gmail.com' },
+    { id: 4, name:"Phone",  icon: <FiPhone />, link: 'tel:9140264635' },
   ];
 
   const scrollToTop = () => {
@@ -76,7 +76,7 @@ const Footer = () => {
             </motion.div>
 
             {/* --- SOCIAL ORBIT --- */}
-            <div className="grid grid-cols-2 gap-8 md:flex md:justify-start md:gap-12 pt-4">
+            <div className="grid grid-cols-2 gap-4 md:flex md:justify-start md:gap-12 pt-4">
               {socialLinks.map((social) => (
                 <motion.a
                   key={social.id}
@@ -84,7 +84,7 @@ const Footer = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                   whileHover={{ y: -5 }}
-                  className="group flex flex-col items-start gap-3"
+                  className="group flex flex-col items-start gap-2"
                 >
                   <span className="text-2xl text-gray-500 group-hover:text-primary transition-colors duration-300">
                     {social.icon}

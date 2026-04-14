@@ -57,7 +57,7 @@
     body {
         @apply bg-background text-text-primary antialiased;
     }
-
+    
     
 }
 
@@ -74,7 +74,7 @@
 }
 
 @utility mainContainer {
-    @apply relative min-h-screen overflow-hidden py-8 sm:py-12 md:py-16 lg:py-24; 
+    @apply relative min-h-screen overflow-hidden py-20 md:py-24; 
 }
 
 @utility insideContainer {
@@ -84,3 +84,14 @@
 @utility rowFlex {
     @apply flex items-center justify-center;
 }
+
+@utility headerMain {
+    @apply text-center max-w-4xl mx-auto mb-12 md:mb-20 px-4;
+}
+@utility headerSpan {
+    @apply inline-block py-1.5 px-5 rounded-full border border-stone-100 bg-white text-primary text-[10px] md:text-xs font-bold tracking-[0.3em] md:tracking-[0.4em] uppercase mb-6 md:mb-8 backdrop-blur-md shadow-sm;
+}
+@utility headerH2 {
+    @apply text-5xl md:text-7xl font-serif font-bold text-text-primary leading-tight;
+}
+

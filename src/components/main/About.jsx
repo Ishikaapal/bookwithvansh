@@ -2,10 +2,11 @@ import { motion } from "framer-motion";
 import { FiInstagram, FiArrowUpRight, FiUsers, FiMail, FiPhone, FiTarget, FiEye } from "react-icons/fi";
 import instaSS from "../../assets/media/Insta.jpeg";
 import bgImage from "../../assets/media/1.png";
+import SectionHeader from "./SectionHeader";
 
 const About = () => {
   return (
-    <div className="mainContainer relative overflow-hidden py-16 md:py-24">
+    <div className="mainContainer">
       
       {/* --- BACKGROUND IMAGE LAYER --- */}
       <div className="absolute inset-0 z-0">
@@ -22,20 +23,7 @@ const About = () => {
       <div className="insideContainer relative z-10">
         
         {/* --- SECTION HEADER --- */}
-        <div className="text-center max-w-4xl mx-auto mb-12 md:mb-20 px-4">
-          <span className="inline-block py-1.5 px-5 rounded-full border border-stone-100 bg-white text-primary text-[10px] md:text-xs font-bold tracking-[0.3em] md:tracking-[0.4em] uppercase mb-6 md:mb-8 backdrop-blur-md shadow-sm">
-            Meet Your Strategic Partner
-          </span>
-          <motion.h2 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.2 }}
-            className="text-4xl md:text-7xl lg:text-8xl font-serif font-bold text-[#1A1A1B] leading-[1.1]"
-          >
-            About <span className="italic text-primary">Books With Vansh</span>
-          </motion.h2 >
-        </div>
+        <SectionHeader headerSpan="Meet Your Strategic Partner" headerH2="About" headerSpanText="Books With Vansh" />
 
         {/* --- MAIN CONTENT GRID --- */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-stretch px-4">
@@ -83,14 +71,14 @@ const About = () => {
 
             {/* CTAs - Properly Aligned */}
             <div className="flex flex-col sm:flex-row items-center gap-6 md:gap-10 pt-8 border-t border-stone-100">
-               <button className="w-full sm:w-auto flex items-center justify-center gap-3 bg-primary text-white px-8 py-4 rounded-full font-bold tracking-widest uppercase text-[10px] md:text-xs transition-all hover:scale-105 shadow-lg shadow-primary/20">
+               <a href="#contact" className="w-full sm:w-auto flex items-center justify-center gap-3 bg-primary text-white px-8 py-4 rounded-full font-bold tracking-widest uppercase text-[10px] md:text-xs transition-all hover:scale-105 shadow-lg shadow-primary/20">
                   <FiArrowUpRight size={16} /> Partner with us
-               </button>
+               </a>
                
                <div className="flex gap-8 text-stone-400">
-                  <a href="#" className="hover:text-primary transition-colors"><FiInstagram size={20} /></a>
+                  <a href="https://www.instagram.com/bookswithvansh/" target="__blank" className="hover:text-primary transition-colors"><FiInstagram size={20} /></a>
                   <a href="mailto:bookswithvansh@gmail.com" className="hover:text-primary transition-colors"><FiMail size={20} /></a>
-                  <a href="tel:+" className="hover:text-primary transition-colors"><FiPhone size={20} /></a>
+                  <a href="tel:+91 9140264635" className="hover:text-primary transition-colors"><FiPhone size={20} /></a>
                </div>
             </div>
           </motion.div>
